@@ -1,20 +1,20 @@
 import discord
 from discord import guild
 from discord.ext import commands
+from api import *
 
 bot = commands.Bot(command_prefix='!', description='This is my bot')
 
 @bot.command()
-async def ping(word):
-    await word.send('Hola ricardo')
+async def hi(word):
+    await word.send('Hola!')
 
 @bot.command()
-async def sum(word, numOne: int, numTwo: int):
-    await word.send(numOne + numTwo)
-
-@bot.command()
-async def info(word):
-    embed = discord.Embed(title=f'{word.guild.name}', description='Hola a todos a mi prueba de bost', color=discord.Color.blue())
+async def bitcoin(word):
+    price = getPrice()
+    date = getDate()
+    coin = getCoin()
+    embed = discord.Embed(title=date, description=coin+' '+price, color=discord.Color.blue())
     await word.send(embed=embed)
 
 @bot.event
